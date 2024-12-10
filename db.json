@@ -1,0 +1,200 @@
+{
+    "businessSolutions": [
+      {
+        "id": 1,
+        "name": "Customer Assistance",
+        "description": "Support for customer inquiries and complaints",
+        "orchestrators": [1, 2]
+      },
+      {
+        "id": 2,
+        "name": "Sales Optimization",
+        "description": "Automation for sales processes and lead management",
+        "orchestrators": [3]
+      }
+    ],
+    "orchestrators": [
+      {
+        "id": 1,
+        "name": "Website Chat",
+        "tools": [1, 2],
+        "subOrchestrator": null
+      },
+      {
+        "id": 2,
+        "name": "WhatsApp Chat",
+        "tools": [3],
+        "subOrchestrator": null
+      },
+      {
+        "id": 3,
+        "name": "Email Automation",
+        "tools": [4],
+        "subOrchestrator": 1
+      }
+    ],
+    "tools": [
+      {
+        "id": 1,
+        "name": "Web Search",
+        "description": "Retrieve information from the web",
+        "documents": [1]
+      },
+      {
+        "id": 2,
+        "name": "Database Access",
+        "description": "Query internal databases",
+        "documents": []
+      },
+      {
+        "id": 3,
+        "name": "Natural Language Parsing",
+        "description": "Process text and extract intents",
+        "documents": [2]
+      },
+      {
+        "id": 4,
+        "name": "Lead Enrichment",
+        "description": "Enhance customer data with external sources",
+        "documents": []
+      }
+    ],
+    "documents": [
+      {
+        "id": 1,
+        "name": "Customer Feedback Archive",
+        "ingestions": [1]
+      },
+      {
+        "id": 2,
+        "name": "Product Catalog",
+        "ingestions": [2]
+      }
+    ],
+    "ingestions": [
+      {
+        "id": 1,
+        "type": "Text",
+        "source": "Customer Feedback Form"
+      },
+      {
+        "id": 2,
+        "type": "Image",
+        "source": "Product Images"
+      }
+    ],
+    "agents": [
+      {
+        "id": 1,
+        "name": "Agent Smith",
+        "conversations": [1, 2]
+      },
+      {
+        "id": 2,
+        "name": "Agent Doe",
+        "conversations": [3]
+      }
+    ],
+    "conversations": [
+      {
+        "id": 1,
+        "status": "case",
+        "messages": [1, 2],
+        "issues": [1]
+      },
+      {
+        "id": 2,
+        "status": "open",
+        "messages": [3],
+        "issues": []
+      },
+      {
+        "id": 3,
+        "status": "closed",
+        "messages": [4],
+        "issues": [2]
+      }
+    ],
+    "messages": [
+      {
+        "id": 1,
+        "content": "How can I reset my password?",
+        "timestamp": "2024-12-10T10:00:00Z",
+        "sender": "customer"
+      },
+      {
+        "id": 2,
+        "content": "Please follow this link to reset your password.",
+        "timestamp": "2024-12-10T10:02:00Z",
+        "sender": "agent"
+      },
+      {
+        "id": 3,
+        "content": "Can you provide a refund for my order?",
+        "timestamp": "2024-12-10T11:00:00Z",
+        "sender": "customer"
+      },
+      {
+        "id": 4,
+        "content": "Your refund has been processed.",
+        "timestamp": "2024-12-10T11:15:00Z",
+        "sender": "agent"
+      }
+    ],
+    "issues": [
+      {
+        "id": 1,
+        "name": "Password Reset Issues",
+        "evalSetItems": [1]
+      },
+      {
+        "id": 2,
+        "name": "Refund Processing Delays",
+        "evalSetItems": [2]
+      }
+    ],
+    "evalSetItems": [
+      {
+        "id": 1,
+        "description": "Password reset link not sent",
+        "evalSet": 1
+      },
+      {
+        "id": 2,
+        "description": "Delayed refund confirmation",
+        "evalSet": 2
+      }
+    ],
+    "evalSets": [
+      {
+        "id": 1,
+        "name": "Customer Service Quality Issues",
+        "evalSetItems": [1]
+      },
+      {
+        "id": 2,
+        "name": "Order Processing Issues",
+        "evalSetItems": [2]
+      }
+    ],
+    "llmBrokers": [
+      {
+        "id": 1,
+        "name": "OpenAI Broker",
+        "llms": [1, 2]
+      }
+    ],
+    "llms": [
+      {
+        "id": 1,
+        "name": "GPT-4",
+        "description": "Large language model for text generation"
+      },
+      {
+        "id": 2,
+        "name": "Codex",
+        "description": "Specialized model for code generation"
+      }
+    ]
+  }
+  

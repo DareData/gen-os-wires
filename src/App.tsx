@@ -5,8 +5,7 @@ import {
   useNotificationProvider,
   RefineThemes,
   ThemedLayoutV2,
-  ThemedHeaderV2,
-  CustomSider
+  ThemedHeaderV2
 } from "@refinedev/chakra-ui";
 
 import { ChakraProvider, Image } from "@chakra-ui/react";

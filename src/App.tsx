@@ -156,10 +156,10 @@ function App() {
             resources={[
               {
                 name: "businessSolutions",
-                list: "/businessSolutions",
-                create: "/businessSolutions/create",
-                edit: "/businessSolutions/edit/:id",
-                show: "/businessSolutions/show/:id",
+                list: "businessSolutions",
+                create: "businessSolutions/create",
+                edit: "businessSolutions/edit/:id",
+                show: "businessSolutions/show/:id",
                 meta: {
                   canDelete: true,
                   icon: <FaBusinessTime />,
@@ -167,10 +167,10 @@ function App() {
               },
               {
                 name: "orchestrators",
-                list: "/orchestrators",
-                create: "/orchestrators/create",
-                edit: "/orchestrators/edit/:id",
-                show: "/orchestrators/show/:id",
+                list: "orchestrators",
+                create: "orchestrators/create",
+                edit: "orchestrators/edit/:id",
+                show: "orchestrators/show/:id",
                 meta: {
                   canDelete: true,
                   icon: <FaCogs />,
@@ -178,10 +178,10 @@ function App() {
               },
               {
                 name: "tools",
-                list: "/tools",
-                create: "/tools/create",
-                edit: "/tools/edit/:id",
-                show: "/tools/show/:id",
+                list: "tools",
+                create: "tools/create",
+                edit: "tools/edit/:id",
+                show: "tools/show/:id",
                 meta: {
                   canDelete: true,
                   icon: <FaTools />,
@@ -189,10 +189,10 @@ function App() {
               },
               {
                 name: "documents",
-                list: "/documents",
-                create: "/documents/create",
-                edit: "/documents/edit/:id",
-                show: "/documents/show/:id",
+                list: "documents",
+                create: "documents/create",
+                edit: "documents/edit/:id",
+                show: "documents/show/:id",
                 meta: {
                   canDelete: true,
                   parent: "tools",
@@ -201,10 +201,10 @@ function App() {
               },
               {
                 name: "ingestions",
-                list: "/ingestions",
-                create: "/ingestions/create",
-                edit: "/ingestions/edit/:id",
-                show: "/ingestions/show/:id",
+                list: "ingestions",
+                create: "ingestions/create",
+                edit: "ingestions/edit/:id",
+                show: "ingestions/show/:id",
                 meta: {
                   canDelete: true,
                   icon: <FaDatabase />,
@@ -212,10 +212,10 @@ function App() {
               },
               {
                 name: "agents",
-                list: "/agents",
-                create: "/agents/create",
-                edit: "/agents/edit/:id",
-                show: "/agents/show/:id",
+                list: "agents",
+                create: "agents/create",
+                edit: "agents/edit/:id",
+                show: "agents/show/:id",
                 meta: {
                   canDelete: true,
                   icon: <FaUserSecret />,
@@ -223,10 +223,10 @@ function App() {
               },
               {
                 name: "conversations",
-                list: "/conversations",
-                create: "/conversations/create",
-                edit: "/conversations/edit/:id",
-                show: "/conversations/show/:id",
+                list: "conversations",
+                create: "conversations/create",
+                edit: "conversations/edit/:id",
+                show: "conversations/show/:id",
                 meta: {
                   canDelete: true,
                   icon: <FaComments />,
@@ -234,10 +234,10 @@ function App() {
               },
               {
                 name: "messages",
-                list: "/messages",
-                create: "/messages/create",
-                edit: "/messages/edit/:id",
-                show: "/messages/show/:id",
+                list: "messages",
+                create: "messages/create",
+                edit: "messages/edit/:id",
+                show: "messages/show/:id",
                 meta: {
                   canDelete: true,
                   icon: <FaEnvelope />,
@@ -245,10 +245,10 @@ function App() {
               },
               {
                 name: "issues",
-                list: "/issues",
-                create: "/issues/create",
-                edit: "/issues/edit/:id",
-                show: "/issues/show/:id",
+                list: "issues",
+                create: "issues/create",
+                edit: "issues/edit/:id",
+                show: "issues/show/:id",
                 meta: {
                   canDelete: true,
                   icon: <FaExclamationCircle />,
@@ -256,10 +256,10 @@ function App() {
               },
               {
                 name: "evalSetItems",
-                list: "/evalSetItems",
-                create: "/evalSetItems/create",
-                edit: "/evalSetItems/edit/:id",
-                show: "/evalSetItems/show/:id",
+                list: "evalSetItems",
+                create: "evalSetItems/create",
+                edit: "evalSetItems/edit/:id",
+                show: "evalSetItems/show/:id",
                 meta: {
                   canDelete: true,
                   icon: <FaListAlt />,
@@ -275,10 +275,10 @@ function App() {
 
               {
                 name: "evalSets",
-                list: "/evalSets",
-                create: "/evalSets/create",
-                edit: "/evalSets/edit/:id",
-                show: "/evalSets/show/:id",
+                list: "evalSets",
+                create: "evalSets/create",
+                edit: "evalSets/edit/:id",
+                show: "evalSets/show/:id",
                 meta: {
                   canDelete: true,
                   icon: <FaBrain />,
@@ -286,10 +286,10 @@ function App() {
               },
               {
                 name: "llmBrokers",
-                list: "/llmBrokers",
-                create: "/llmBrokers/create",
-                edit: "/llmBrokers/edit/:id",
-                show: "/llmBrokers/show/:id",
+                list: "llmBrokers",
+                create: "llmBrokers/create",
+                edit: "llmBrokers/edit/:id",
+                show: "llmBrokers/show/:id",
                 meta: {
                   canDelete: true,
                   icon: <FaRobot />,
@@ -297,10 +297,10 @@ function App() {
               },
               {
                 name: "llms",
-                list: "/llms",
-                create: "/llms/create",
-                edit: "/llms/edit/:id",
-                show: "/llms/show/:id",
+                list: "llms",
+                create: "llms/create",
+                edit: "llms/edit/:id",
+                show: "llms/show/:id",
                 meta: {
                   canDelete: true,
                   icon: <FaRobot />,
@@ -329,82 +329,82 @@ function App() {
                   index
                   element={<NavigateToResource resource="blog_posts" />}
                 />
-                  <Route path="/WorkRoom">
+                  <Route path="WorkRoom">
                     <Route index element={<WorkRoom />} />
                   </Route>
-                  <Route path="/businessSolutions">
+                  <Route path="businessSolutions">
                       <Route index element={<BusinessSolutionList />} />
                       <Route path="create" element={<BusinessSolutionCreate />} />
                       <Route path="edit/:id" element={<BusinessSolutionEdit />} />
                       <Route path="show/:id" element={<BusinessSolutionShow />} />
                     </Route>
-                    <Route path="/orchestrators">
+                    <Route path="orchestrators">
                       <Route index element={<OrchestratorList />} />
                       <Route path="create" element={<OrchestratorCreate />} />
                       <Route path="edit/:id" element={<OrchestratorEdit />} />
                       <Route path="show/:id" element={<OrchestratorShow />} />
                     </Route>
-                    <Route path="/tools">
+                    <Route path="tools">
                       <Route index element={<ToolList />} />
                       <Route path="create" element={<ToolCreate />} />
                       <Route path="edit/:id" element={<ToolEdit />} />
                       <Route path="show/:id" element={<ToolShow />} />
                     </Route>
-                    <Route path="/documents">
+                    <Route path="documents">
                       <Route index element={<DocumentList />} />
                       <Route path="create" element={<DocumentCreate />} />
                       <Route path="edit/:id" element={<DocumentEdit />} />
                       <Route path="show/:id" element={<DocumentShow />} />
                     </Route>
-                    <Route path="/ingestions">
+                    <Route path="ingestions">
                       <Route index element={<IngestionList />} />
                       <Route path="create" element={<IngestionCreate />} />
                       <Route path="edit/:id" element={<IngestionEdit />} />
                       <Route path="show/:id" element={<IngestionShow />} />
                     </Route>
-                    <Route path="/agents">
+                    <Route path="agents">
                       <Route index element={<AgentList />} />
                       <Route path="create" element={<AgentCreate />} />
                       <Route path="edit/:id" element={<AgentEdit />} />
                       <Route path="show/:id" element={<AgentShow />} />
                     </Route>
-                    <Route path="/conversations">
+                    <Route path="conversations">
                       <Route index element={<ConversationList />} />
                       <Route path="create" element={<ConversationCreate />} />
                       <Route path="edit/:id" element={<ConversationEdit />} />
                       <Route path="show/:id" element={<ConversationShow />} />
                     </Route>
-                    <Route path="/messages">
+                    <Route path="messages">
                       <Route index element={<MessageList />} />
                       <Route path="create" element={<MessageCreate />} />
                       <Route path="edit/:id" element={<MessageEdit />} />
                       <Route path="show/:id" element={<MessageShow />} />
                     </Route>
-                    <Route path="/issues">
+                    <Route path="issues">
                       <Route index element={<IssueList />} />
                       <Route path="create" element={<IssueCreate />} />
                       <Route path="edit/:id" element={<IssueEdit />} />
                       <Route path="show/:id" element={<IssueShow />} />
                     </Route>
-                    <Route path="/evalSetItems">
+                    <Route path="evalSetItems">
                       <Route index element={<EvalSetItemList />} />
                       <Route path="create" element={<EvalSetItemCreate />} />
                       <Route path="edit/:id" element={<EvalSetItemEdit />} />
                       <Route path="show/:id" element={<EvalSetItemShow />} />
                     </Route>
-                    <Route path="/evalSets">
+                    <Route path="evalSets">
                       <Route index element={<EvalSetList />} />
                       <Route path="create" element={<EvalSetCreate />} />
                       <Route path="edit/:id" element={<EvalSetEdit />} />
                       <Route path="show/:id" element={<EvalSetShow />} />
                     </Route>
-                    <Route path="/llmBrokers">
+                    <Route path="llmBrokers">
                       <Route index element={<LlmBrokerList />} />
                       <Route path="create" element={<LlmBrokerCreate />} />
                       <Route path="edit/:id" element={<LlmBrokerEdit />} />
                       <Route path="show/:id" element={<LlmBrokerShow />} />
                     </Route>
-                    <Route path="/llms">
+                    <Route path="llms">
                       <Route index element={<LlmList />} />
                       <Route path="create" element={<LlmCreate />} />
                       <Route path="edit/:id" element={<LlmEdit />} />
@@ -419,9 +419,9 @@ function App() {
                   </Authenticated>
                 }
               >
-                <Route path="/login" element={<Login />} />
-                <Route path="/register" element={<Register />} />
-                <Route path="/forgot-password" element={<ForgotPassword />} />
+                <Route path="login" element={<Login />} />
+                <Route path="register" element={<Register />} />
+                <Route path="forgot-password" element={<ForgotPassword />} />
               </Route>
             </Routes>
 

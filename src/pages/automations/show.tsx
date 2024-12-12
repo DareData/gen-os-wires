@@ -1,17 +1,16 @@
 import React, { useEffect } from "react";
 import mermaid from "mermaid";
-
-// Ensure Mermaid component is imported
 import Mermaid from "react-mermaid2";
 
 export const AutomationShow = () => {
   useEffect(() => {
-    mermaid.initialize({ startOnLoad: true });
+    mermaid.initialize({
+      startOnLoad: true,
+      securityLevel: "loose",
+    });
   }, []);
-
   return (
-    <div>
-      <h1>React Mermaid Example</h1>
+    <div >
       <Mermaid
         chart={`graph LR;
 A-->B;

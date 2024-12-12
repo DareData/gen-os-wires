@@ -9,6 +9,7 @@ import {
 } from "@refinedev/chakra-ui";
 
 import { ChakraProvider, Image } from "@chakra-ui/react";
+import { FaBusinessTime, FaCogs, FaTools, FaFileAlt, FaDatabase, FaUserSecret, FaComments, FaEnvelope, FaExclamationCircle, FaListAlt, FaChalkboardTeacher, FaBrain, FaRobot } from "react-icons/fa";
 import routerBindings, {
   CatchAllNavigate,
   DocumentTitleHandler,
@@ -140,7 +141,7 @@ function App() {
         {/* You can change the theme colors here. example: theme={RefineThemes.Magenta} */}
         <ChakraProvider>
           <Refine
-            dataProvider={dataProvider("https://my-json-server.typicode.com/nunobbras/gen-os-wires")}
+            dataProvider={dataProvider("https://my-json-server.typicode.com/nunobbras/gen-os-wires/")}
             notificationProvider={useNotificationProvider}
             routerProvider={routerBindings}
             authProvider={authProvider}
@@ -161,6 +162,7 @@ function App() {
                 show: "/businessSolutions/show/:id",
                 meta: {
                   canDelete: true,
+                  icon: <FaBusinessTime />,
                 },
               },
               {
@@ -171,6 +173,7 @@ function App() {
                 show: "/orchestrators/show/:id",
                 meta: {
                   canDelete: true,
+                  icon: <FaCogs />,
                 },
               },
               {
@@ -181,6 +184,7 @@ function App() {
                 show: "/tools/show/:id",
                 meta: {
                   canDelete: true,
+                  icon: <FaTools />,
                 },
               },
               {
@@ -192,6 +196,7 @@ function App() {
                 meta: {
                   canDelete: true,
                   parent: "tools",
+                  icon: <FaFileAlt />,
                 },
               },
               {
@@ -202,6 +207,7 @@ function App() {
                 show: "/ingestions/show/:id",
                 meta: {
                   canDelete: true,
+                  icon: <FaDatabase />,
                 },
               },
               {
@@ -212,6 +218,7 @@ function App() {
                 show: "/agents/show/:id",
                 meta: {
                   canDelete: true,
+                  icon: <FaUserSecret />,
                 },
               },
               {
@@ -222,6 +229,7 @@ function App() {
                 show: "/conversations/show/:id",
                 meta: {
                   canDelete: true,
+                  icon: <FaComments />,
                 },
               },
               {
@@ -232,6 +240,7 @@ function App() {
                 show: "/messages/show/:id",
                 meta: {
                   canDelete: true,
+                  icon: <FaEnvelope />,
                 },
               },
               {
@@ -242,6 +251,7 @@ function App() {
                 show: "/issues/show/:id",
                 meta: {
                   canDelete: true,
+                  icon: <FaExclamationCircle />,
                 },
               },
               {
@@ -252,12 +262,14 @@ function App() {
                 show: "/evalSetItems/show/:id",
                 meta: {
                   canDelete: true,
+                  icon: <FaListAlt />,
                 },
               },
               {
                 name: "WorkRoom",
                 meta: {
                   canDelete: true,
+                  icon: <FaChalkboardTeacher />,
                 },
               },
 
@@ -269,6 +281,7 @@ function App() {
                 show: "/evalSets/show/:id",
                 meta: {
                   canDelete: true,
+                  icon: <FaBrain />,
                 },
               },
               {
@@ -279,6 +292,7 @@ function App() {
                 show: "/llmBrokers/show/:id",
                 meta: {
                   canDelete: true,
+                  icon: <FaRobot />,
                 },
               },
               {
@@ -289,6 +303,7 @@ function App() {
                 show: "/llms/show/:id",
                 meta: {
                   canDelete: true,
+                  icon: <FaRobot />,
                 },
               },
             ]}            

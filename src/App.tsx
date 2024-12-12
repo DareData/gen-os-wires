@@ -140,7 +140,7 @@ function App() {
         {/* You can change the theme colors here. example: theme={RefineThemes.Magenta} */}
         <ChakraProvider>
           <Refine
-            dataProvider={dataProvider("http://localhost:3000")}
+            dataProvider={dataProvider("https://my-json-server.typicode.com/nunobbras/gen-os-wires")}
             notificationProvider={useNotificationProvider}
             routerProvider={routerBindings}
             authProvider={authProvider}

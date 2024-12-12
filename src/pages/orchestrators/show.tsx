@@ -6,6 +6,7 @@ import { AgentList } from "../agents";
 import { useShow, useTranslate, useMany } from "@refinedev/core";
 import { Show, NumberField, TagField, TextField } from "@refinedev/chakra-ui";
 import { Heading, HStack } from "@chakra-ui/react";
+import { AutomationShow } from '../automations';
 
 export const OrchestratorShow = () => {
     const translate = useTranslate();
@@ -75,6 +76,9 @@ export const OrchestratorShow = () => {
             </TabPanel>
             <TabPanel>
               <AgentList/> 
+            </TabPanel>
+            <TabPanel>
+              <AutomationShow/> 
             </TabPanel>
           </TabPanels>
         </Tabs>

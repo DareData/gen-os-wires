@@ -5,7 +5,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "tsc  && refine build",
+    "build": "refine build & rm docs & mv dist docs",
     "dev": "refine dev",
     "refine": "refine",
     "start": "refine start",

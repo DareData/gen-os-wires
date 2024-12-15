@@ -8,12 +8,27 @@ export const AutomationShow = () => {
     mermaid.initialize({
       startOnLoad: true,
       securityLevel: "loose",
+      theme: "base",
+      themeVariables: {
+        primaryColor: "#4a4a4a",
+        primaryTextColor: "#ffffff",
+        primaryBorderColor: "#4a4a4a",
+        secondaryColor: "#6c6c6c",
+        secondaryTextColor: "#ffffff",
+        secondaryBorderColor: "#6c6c6c",
+        tertiaryColor: "#9e9e9e",
+        tertiaryTextColor: "#ffffff",
+        tertiaryBorderColor: "#9e9e9e",
+      },
     });
+    setTimeout(() => {
+      mermaid.contentLoaded();
+    }, 100);    
   }, []);
 
   return (
     <Center>
-      <Box width="80%">
+      <Box margin="50px">
         <Mermaid
           chart={`graph TD;
             Orchestrator-->AI_Agent;

@@ -4,6 +4,7 @@ import {
   type BoxProps,
   HStack,
   Icon,
+  Button,
   IconButton,
   Menu,
   MenuButton,
@@ -11,7 +12,7 @@ import {
   MenuList,
   Text,
   useColorMode,
-  useColorModeValue,
+  useColorModeValue
 } from "@chakra-ui/react";
 import {
   HamburgerMenu,
@@ -19,8 +20,10 @@ import {
 } from "@refinedev/chakra-ui";
 import { useGetIdentity, useGetLocale, useSetLocale } from "@refinedev/core";
 import { IconLanguage, IconMoon, IconSun } from "@tabler/icons-react";
+import { FaBusinessTime, FaCogs, FaTools, FaFileAlt, FaPhoneAlt, FaDatabase, FaUserSecret, FaComments, FaEnvelope, FaExclamationCircle, FaListAlt, FaChalkboardTeacher, FaBrain, FaRobot, FaSmile } from "react-icons/fa";
 import i18n from "i18next";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 
 type IUser = {
   id: number;
@@ -28,22 +31,25 @@ type IUser = {
   avatar: string;
 };
 
-export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = ({
+export const Header: React.FC<RefineThemedLayoutV2HeaderProps & { setLastWorkResource: () => void; setLastMonitorResource: () => void; toggleMode: () => void; usageMode: string }> = ({
   sticky,
+  setLastWorkResource,
+  setLastMonitorResource,
+  toggleMode, 
+  usageMode
 }) => {
   const { data: user } = useGetIdentity<IUser>();
-
   const { colorMode, toggleColorMode } = useColorMode();
-
   const bgColor = useColorModeValue(
     "refine.header.bg.light",
     "refine.header.bg.dark",
   );
-
   const changeLanguage = useSetLocale();
   const locale = useGetLocale();
   const currentLocale = locale();
-
+  const navigate = useNavigate();
+  const location = useLocation();
+  
   let stickyProps: BoxProps = {};
   if (sticky) {
     stickyProps = {
@@ -52,6 +58,26 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = ({
       zIndex: 1,
     };
   }
+
+
+  // useEffect(() => {
+  //     if (usageMode === "MonitorRoom") {
+  //       navigate(lastMonitorResource);
+  //     } else if (usageMode === "WorkRoom") {
+  //       navigate(lastWorkResource);
+  //     }
+  //   }, [usageMode, lastMonitorResource, lastWorkResource]);
+  
+  // useEffect(() => {
+  //   console.log("location.pathname", location.pathname);
+  //   if (usageMode === "MonitorRoom") {
+  //     setLastMonitorResource(location.pathname);
+  //   } else if (usageMode === "WorkRoom") {
+  //     setLastWorkResource(location.pathname);
+  //   }
+  // }, []);
+  
+
 
   return (
     <Box
@@ -69,6 +95,29 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = ({
       {...stickyProps}
     >
       <HamburgerMenu />
+
+      <HStack>
+      <Menu>
+      <HStack spacing="10px">
+            <Button
+                colorScheme={usageMode === "MonitorRoom" ? "blue" : "gray"}
+                onClick={()=>toggleMode(navigate)}
+                leftIcon={<FaChalkboardTeacher />}
+                variant="solid"
+            >
+                Monitor Room
+            </Button>
+            <Button
+                colorScheme={usageMode === "WorkRoom" ? "blue" : "gray"}
+                onClick={()=>toggleMode(navigate)}
+                leftIcon={<FaPhoneAlt />}
+                variant="solid"
+            >
+                Work Room
+            </Button>
+        </HStack>
+      </Menu>
+      </HStack>
 
       <HStack>
         <Menu>

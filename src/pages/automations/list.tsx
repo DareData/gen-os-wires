@@ -126,6 +126,9 @@ export const AutomationList = () => {
         },
     } = useTable({
         columns,
+        refineCoreProps: {
+            resource: "automations",
+        },
     });
 
     const { data: messagesData } = useMany({

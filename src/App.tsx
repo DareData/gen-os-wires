@@ -1,4 +1,5 @@
 import { Authenticated, GitHubBanner, Refine } from "@refinedev/core";
+import React, { useState, useMemo, useEffect } from "react";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 import {
   ErrorComponent,
@@ -8,8 +9,8 @@ import {
   ThemedHeaderV2
 } from "@refinedev/chakra-ui";
 
-import { ChakraProvider, Image } from "@chakra-ui/react";
-import { FaBusinessTime, FaCogs, FaTools, FaFileAlt, FaDatabase, FaUserSecret, FaComments, FaEnvelope, FaExclamationCircle, FaListAlt, FaChalkboardTeacher, FaBrain, FaRobot } from "react-icons/fa";
+import { ChakraProvider, Image, Button } from "@chakra-ui/react";
+import { FaBusinessTime, FaCogs, Faphone, FaTools, FaFileAlt, FaDatabase, FaUserSecret, FaComments, FaEnvelope, FaExclamationCircle, FaListAlt, FaChalkboardTeacher, FaBrain, FaRobot } from "react-icons/fa";
 import routerBindings, {
   CatchAllNavigate,
   DocumentTitleHandler,
@@ -18,7 +19,7 @@ import routerBindings, {
 } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 import { useTranslation } from "react-i18next";
-import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Outlet, Route, Routes, useNavigate, useLocation } from "react-router-dom";
 import { authProvider } from "./authProvider";
 import { Header } from "./components/header";
 
@@ -126,14 +127,192 @@ import { ForgotPassword } from "./pages/forgotPassword";
 import { Login } from "./pages/login";
 import { Register } from "./pages/register";
 
+
 function App() {
   const { t, i18n } = useTranslation();
+  const [usageMode, setUsageMode] = useState<IMode>("WorkRoom");
+  const [lastMonitorResource, setLastMonitorResource] = useState<string>("/businessSolutions");
+  const [lastWorkResource, setLastWorkResource] = useState<string>("/conversations");
+
+  type IMode = "WorkRoom" | "MonitorRoom";
 
   const i18nProvider = {
     translate: (key: string, params: object) => t(key, params),
     changeLocale: (lang: string) => i18n.changeLanguage(lang),
     getLocale: () => i18n.language,
   };
+
+  const toggleMode = (navigate) => {
+    console.log("toogle", lastMonitorResource, lastWorkResource);
+    setUsageMode((prevMode) => {
+      if (prevMode === "WorkRoom") {
+        //setLastWorkResource(location.pathname);
+        navigate(lastMonitorResource);
+        return "MonitorRoom";
+      } else {
+        //setLastMonitorResource(location.pathname);
+        navigate(lastWorkResource);
+        return "WorkRoom";
+      }
+    });
+  };
+
+  const monitorResources = useMemo(() => [
+    {
+      name: "businessSolutions",
+      list: "businessSolutions",
+      create: "businessSolutions/create",
+      edit: "businessSolutions/edit/:id",
+      show: "businessSolutions/show/:id",
+      meta: {
+        canDelete: true,
+        icon: <FaBusinessTime />,
+      },
+    },
+    {
+      name: "orchestrators",
+      list: "orchestrators",
+      create: "orchestrators/create",
+      edit: "orchestrators/edit/:id",
+      show: "orchestrators/show/:id",
+      meta: {
+        canDelete: true,
+        icon: <FaCogs />,
+      },
+    },
+    {
+      name: "agents",
+      list: "agents",
+      create: "agents/create",
+      edit: "agents/edit/:id",
+      show: "agents/show/:id",
+      meta: {
+        canDelete: true,
+        icon: <FaUserSecret/>,
+      },
+    },
+    {
+      name: "Details",
+      meta: {
+        canDelete: true,
+        icon: <FaListAlt />,
+      },
+    },
+  
+    {
+      name: "ingestions",
+      list: "ingestions",
+      create: "ingestions/create",
+      edit: "ingestions/edit/:id",
+      show: "ingestions/show/:id",
+      meta: {
+        canDelete: true,
+        icon: <FaDatabase />,
+        parent: "Details",
+      },
+    },
+    {
+      name: "issues",
+      list: "issues",
+      create: "issues/create",
+      edit: "issues/edit/:id",
+      show: "issues/show/:id",
+      meta: {
+        canDelete: true,
+        icon: <FaExclamationCircle />,
+        parent: "Details",
+      },
+    },
+    {
+      name: "evalSetItems",
+      list: "evalSetItems",
+      create: "evalSetItems/create",
+      edit: "evalSetItems/edit/:id",
+      show: "evalSetItems/show/:id",
+      meta: {
+        canDelete: true,
+        icon: <FaListAlt />,
+        parent: "Details",
+      },
+    },
+    {
+      name: "evalSets",
+      list: "evalSets",
+      create: "evalSets/create",
+      edit: "evalSets/edit/:id",
+      show: "evalSets/show/:id",
+      meta: {
+        canDelete: true,
+        icon: <FaBrain />,
+        parent: "Details",
+      },
+    },
+    {
+      name: "llmBrokers",
+      list: "llmBrokers",
+      create: "llmBrokers/create",
+      edit: "llmBrokers/edit/:id",
+      show: "llmBrokers/show/:id",
+      meta: {
+        canDelete: true,
+        icon: <FaRobot />,
+        parent: "Details",
+      },
+    },
+    {
+      name: "llms",
+      list: "llms",
+      create: "llms/create",
+      edit: "llms/edit/:id",
+      show: "llms/show/:id",
+      meta: {
+        canDelete: true,
+        icon: <FaRobot />,
+        parent: "Details",
+      },
+    }], []);
+
+  const workResources = useMemo(() => [
+    {
+      name: "conversations",
+      list: "conversations",
+      create: "conversations/create",
+      edit: "conversations/edit/:id",
+      show: "conversations/show/:id",
+      meta: {
+        canDelete: true,
+        icon: <FaComments />,
+      },
+    },
+    {
+      name: "messages",
+      list: "messages",
+      create: "messages/create",
+      edit: "messages/edit/:id",
+      show: "messages/show/:id",
+      meta: {
+        canDelete: true,
+        icon: <FaEnvelope />,
+      },
+    },
+    {
+      name: "cockpit",
+      list: "cockpit",
+      meta: {
+        canDelete: true,
+        icon: <FaEnvelope />,
+      },
+    }
+  ], []);
+
+  const resources = useMemo(() => {
+    if (usageMode === "MonitorRoom") {
+        return monitorResources;
+    } else if (usageMode === "WorkRoom") {
+        return workResources;
+    }
+    return []; 
+}, [usageMode, monitorResources, workResources]); 
 
   return (
     <BrowserRouter>
@@ -152,161 +331,7 @@ function App() {
                   {!collapsed && <h3><b>Gen-OS</b> Wireframes</h3>}
               </div>
             )}
-            
-            resources={[
-              {
-                name: "businessSolutions",
-                list: "businessSolutions",
-                create: "businessSolutions/create",
-                edit: "businessSolutions/edit/:id",
-                show: "businessSolutions/show/:id",
-                meta: {
-                  canDelete: true,
-                  icon: <FaBusinessTime />,
-                },
-              },
-              {
-                name: "orchestrators",
-                list: "orchestrators",
-                create: "orchestrators/create",
-                edit: "orchestrators/edit/:id",
-                show: "orchestrators/show/:id",
-                meta: {
-                  canDelete: true,
-                  icon: <FaCogs />,
-                },
-              },
-              {
-                name: "tools",
-                list: "tools",
-                create: "tools/create",
-                edit: "tools/edit/:id",
-                show: "tools/show/:id",
-                meta: {
-                  canDelete: true,
-                  icon: <FaTools />,
-                },
-              },
-              {
-                name: "documents",
-                list: "documents",
-                create: "documents/create",
-                edit: "documents/edit/:id",
-                show: "documents/show/:id",
-                meta: {
-                  canDelete: true,
-                  parent: "tools",
-                  icon: <FaFileAlt />,
-                },
-              },
-              {
-                name: "ingestions",
-                list: "ingestions",
-                create: "ingestions/create",
-                edit: "ingestions/edit/:id",
-                show: "ingestions/show/:id",
-                meta: {
-                  canDelete: true,
-                  icon: <FaDatabase />,
-                },
-              },
-              {
-                name: "agents",
-                list: "agents",
-                create: "agents/create",
-                edit: "agents/edit/:id",
-                show: "agents/show/:id",
-                meta: {
-                  canDelete: true,
-                  icon: <FaUserSecret />,
-                },
-              },
-              {
-                name: "conversations",
-                list: "conversations",
-                create: "conversations/create",
-                edit: "conversations/edit/:id",
-                show: "conversations/show/:id",
-                meta: {
-                  canDelete: true,
-                  icon: <FaComments />,
-                },
-              },
-              {
-                name: "messages",
-                list: "messages",
-                create: "messages/create",
-                edit: "messages/edit/:id",
-                show: "messages/show/:id",
-                meta: {
-                  canDelete: true,
-                  icon: <FaEnvelope />,
-                },
-              },
-              {
-                name: "issues",
-                list: "issues",
-                create: "issues/create",
-                edit: "issues/edit/:id",
-                show: "issues/show/:id",
-                meta: {
-                  canDelete: true,
-                  icon: <FaExclamationCircle />,
-                },
-              },
-              {
-                name: "evalSetItems",
-                list: "evalSetItems",
-                create: "evalSetItems/create",
-                edit: "evalSetItems/edit/:id",
-                show: "evalSetItems/show/:id",
-                meta: {
-                  canDelete: true,
-                  icon: <FaListAlt />,
-                },
-              },
-              {
-                name: "WorkRoom",
-                meta: {
-                  canDelete: true,
-                  icon: <FaChalkboardTeacher />,
-                },
-              },
-
-              {
-                name: "evalSets",
-                list: "evalSets",
-                create: "evalSets/create",
-                edit: "evalSets/edit/:id",
-                show: "evalSets/show/:id",
-                meta: {
-                  canDelete: true,
-                  icon: <FaBrain />,
-                },
-              },
-              {
-                name: "llmBrokers",
-                list: "llmBrokers",
-                create: "llmBrokers/create",
-                edit: "llmBrokers/edit/:id",
-                show: "llmBrokers/show/:id",
-                meta: {
-                  canDelete: true,
-                  icon: <FaRobot />,
-                },
-              },
-              {
-                name: "llms",
-                list: "llms",
-                create: "llms/create",
-                edit: "llms/edit/:id",
-                show: "llms/show/:id",
-                meta: {
-                  canDelete: true,
-                  icon: <FaRobot />,
-                },
-              },
-            ]}            
+            resources={resources}
             options={{
               syncWithLocation: true,
               warnWhenUnsavedChanges: true,
@@ -319,7 +344,14 @@ function App() {
                     key="authenticated-routes"
                     fallback={<CatchAllNavigate to="/login" />}
                   >
-                    <ThemedLayoutV2 Header={() => <Header sticky />}>
+                    <ThemedLayoutV2 Header={() => (
+                        <Header 
+                        toggleMode={toggleMode} 
+                        usageMode={usageMode} 
+                        setLastMonitorResource ={setLastMonitorResource} 
+                        setLastWorkResource ={setLastWorkResource}
+                        />
+                    )}>
                       <Outlet />
                     </ThemedLayoutV2>
                   </Authenticated>

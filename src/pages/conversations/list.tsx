@@ -32,16 +32,16 @@ export const ConversationList = () => {
             {
                 id: "id",
                 accessorKey: "id",
-                header: translate("conversations.fields.id"),
+                header: translate("Id"),
             },
             {
                 id: "status",
                 accessorKey: "status",
-                header: translate("conversations.fields.status"),
+                header: translate("Status"),
             },
             {
                 id: "messages",
-                header: translate("conversations.fields.messages"),
+                header: translate("Messages"),
                 accessorKey: "messages",
                 cell: function render({ getValue, table }) {
                     const meta = table.options.meta as {
@@ -65,7 +65,7 @@ export const ConversationList = () => {
             },
             {
                 id: "issues",
-                header: translate("conversations.fields.issues"),
+                header: translate("Issues"),
                 accessorKey: "issues",
                 cell: function render({ getValue, table }) {
                     const meta = table.options.meta as {
@@ -126,6 +126,9 @@ export const ConversationList = () => {
         },
     } = useTable({
         columns,
+        refineCoreProps: {
+            resource: "conversations",
+        },
     });
 
     const { data: messagesData } = useMany({

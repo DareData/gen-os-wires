@@ -1,9 +1,9 @@
 import { Tabs, TabList, TabPanels, Tab, TabPanel, Box } from '@chakra-ui/react'
-import { ConversationListDetail } from "../conversations";
+import { ConversationList } from "../conversations";
 import { ToolList } from "../tools";
 import { AgentList } from "../agents";
 
-import { useShow, useTranslate, useMany } from "@refinedev/core";
+import { useShow, useList, useTranslate, useMany } from "@refinedev/core";
 import { Show, NumberField, TagField, TextField } from "@refinedev/chakra-ui";
 import { Heading, HStack } from "@chakra-ui/react";
 import { AutomationShow } from '../automations';
@@ -15,13 +15,14 @@ export const OrchestratorShow = () => {
 
     const record = data?.data;
 
-    const { data: toolsData, isLoading: toolsIsLoading } = useMany({
+    const { data: toolsData, isLoading: toolsIsLoading } = useList({
         resource: "tools",
         ids: record?.tools || [],
         queryOptions: {
             enabled: !!record && !!record?.tools?.length,
         },
     });
+
 
     return (
         <Show isLoading={isLoading}>
@@ -69,13 +70,13 @@ export const OrchestratorShow = () => {
             )}
             </TabPanel>
             <TabPanel>
-              <ConversationListDetail/>
+              <ConversationList/>
             </TabPanel>
             <TabPanel>
               <ToolList />
             </TabPanel>
             <TabPanel>
-              <AgentList/> 
+                <AgentList />
             </TabPanel>
             <TabPanel>
               <AutomationShow/> 

@@ -21,8 +21,9 @@ import {
     Button,
     IconButton,
     Box,
+    Badge,
 } from "@chakra-ui/react";
-import { IconChevronRight, IconChevronLeft } from "@tabler/icons-react";
+import { IconChevronRight, IconChevronLeft, IconCheck, IconX, IconAlertCircle } from "@tabler/icons-react";
 import { useTranslate, GetManyResponse, useMany } from "@refinedev/core";
 
 export const ConversationListDetail = () => {
@@ -32,16 +33,35 @@ export const ConversationListDetail = () => {
             {
                 id: "id",
                 accessorKey: "id",
-                header: translate("conversations.fields.id"),
+                header: translate("id"),
             },
             {
                 id: "status",
                 accessorKey: "status",
-                header: translate("conversations.fields.status"),
+                header: translate("status"),
+                cell: function render({ getValue }) {
+                    const status = getValue();
+                    let colorScheme = "gray";
+                    let icon = <IconAlertCircle size="18" />;
+
+                    if (status === "closed") {
+                        colorScheme = "green";
+                        icon = <IconCheck size="18" />;
+                    } else if (status === "case") {
+                        colorScheme = "red";
+                        icon = <IconX size="18" />;
+                    }
+
+                    return (
+                        <Badge colorScheme={colorScheme} display="flex" alignItems="center">
+                            {icon}  {status}
+                        </Badge>
+                    );
+                },
             },
             {
                 id: "messages",
-                header: translate("conversations.fields.messages"),
+                header: translate("messages"),
                 accessorKey: "messages",
                 cell: function render({ getValue, table }) {
                     const meta = table.options.meta as {
@@ -125,8 +145,13 @@ export const ConversationListDetail = () => {
             tableQueryResult: { data: tableData },
         },
     } = useTable({
+        refineCoreProps: {
+            resource: "messages",
+        },
         columns,
     });
+
+
 
     const { data: messagesData } = useMany({
         resource: "messages",

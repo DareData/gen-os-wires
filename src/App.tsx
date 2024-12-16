@@ -317,7 +317,7 @@ function App() {
 
 
   return (
-    <BrowserRouter>
+    <BrowserRouter basename = "/gen-os-wires">
       <RefineKbarProvider >
         {/* You can change the theme colors here. example: theme={RefineThemes.Magenta} */}
         <ChakraProvider>

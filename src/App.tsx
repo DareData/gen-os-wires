@@ -315,9 +315,12 @@ function App() {
     }
   ], [usageMode]);
 
+  const basename = window.location.pathname.startsWith('/gen-os-wires') 
+  ? '/gen-os-wires' 
+  : '/';
 
   return (
-    <BrowserRouter basename = "/gen-os-wires">
+    <BrowserRouter basename = {basename}>
       <RefineKbarProvider >
         {/* You can change the theme colors here. example: theme={RefineThemes.Magenta} */}
         <ChakraProvider>

@@ -1,11 +1,11 @@
 {
   "name": "inferencer-chakra-ui",
-  "homepage": "https://nunobbras.github.io/gen-os-wires",
+  "homepage": "https://nunobbras.github.io/gen-os-wires/",
   "version": "1.0.0",
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "refine build && rm -R docs && mv dist docs",
+    "build": "refine build --base=/gen-os-wires/ && rm -R docs && mv dist docs",
     "dev": "refine dev",
     "refine": "refine",
     "start": "refine start",

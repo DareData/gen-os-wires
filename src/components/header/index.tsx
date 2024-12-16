@@ -31,10 +31,8 @@ type IUser = {
   avatar: string;
 };
 
-export const Header: React.FC<RefineThemedLayoutV2HeaderProps & { setLastWorkResource: () => void; setLastMonitorResource: () => void; toggleMode: () => void; usageMode: string }> = ({
+export const Header: React.FC<RefineThemedLayoutV2HeaderProps & { toggleMode: () => void; usageMode: string }> = ({
   sticky,
-  setLastWorkResource,
-  setLastMonitorResource,
   toggleMode, 
   usageMode
 }) => {
@@ -58,6 +56,16 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps & { setLastWorkRes
       zIndex: 1,
     };
   }
+
+
+const localToggleMode = () => {
+      if (usageMode !== "WorkRoom") {
+        navigate("/businessSolutions");
+      } else {
+        navigate("/conversations");
+      }
+      toggleMode();
+  };
 
 
   // useEffect(() => {
@@ -101,7 +109,7 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps & { setLastWorkRes
       <HStack spacing="10px">
             <Button
                 colorScheme={usageMode === "MonitorRoom" ? "blue" : "gray"}
-                onClick={()=>toggleMode(navigate)}
+                onClick={localToggleMode}
                 leftIcon={<FaChalkboardTeacher />}
                 variant="solid"
             >
@@ -109,7 +117,7 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps & { setLastWorkRes
             </Button>
             <Button
                 colorScheme={usageMode === "WorkRoom" ? "blue" : "gray"}
-                onClick={()=>toggleMode(navigate)}
+                onClick={localToggleMode}
                 leftIcon={<FaPhoneAlt />}
                 variant="solid"
             >

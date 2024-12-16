@@ -142,53 +142,55 @@ function App() {
     getLocale: () => i18n.language,
   };
 
-  const toggleMode = (navigate) => {
-    console.log("toogle", lastMonitorResource, lastWorkResource);
+  const toggleMode = () => {
     setUsageMode((prevMode) => {
       if (prevMode === "WorkRoom") {
-        //setLastWorkResource(location.pathname);
-        navigate(lastMonitorResource);
         return "MonitorRoom";
       } else {
-        //setLastMonitorResource(location.pathname);
-        navigate(lastWorkResource);
         return "WorkRoom";
       }
     });
   };
 
-  const monitorResources = useMemo(() => [
+
+  console.log("usageMode", usageMode, usageMode === "MonitorRoom");
+  
+  
+  const resources = useMemo(() => [
     {
       name: "businessSolutions",
-      list: "businessSolutions",
-      create: "businessSolutions/create",
-      edit: "businessSolutions/edit/:id",
-      show: "businessSolutions/show/:id",
+      list: "/businessSolutions",
+      create: "/businessSolutions/create",
+      edit: "/businessSolutions/edit/:id",
+      show: "/businessSolutions/show/:id",
       meta: {
         canDelete: true,
         icon: <FaBusinessTime />,
+        hide: usageMode === "MonitorRoom"
       },
     },
     {
       name: "orchestrators",
-      list: "orchestrators",
-      create: "orchestrators/create",
-      edit: "orchestrators/edit/:id",
-      show: "orchestrators/show/:id",
+      list: "/orchestrators",
+      create: "/orchestrators/create",
+      edit: "/orchestrators/edit/:id",
+      show: "/orchestrators/show/:id",
       meta: {
         canDelete: true,
         icon: <FaCogs />,
+        hide: usageMode === "MonitorRoom"
       },
     },
     {
       name: "agents",
-      list: "agents",
-      create: "agents/create",
-      edit: "agents/edit/:id",
-      show: "agents/show/:id",
+      list: "/agents",
+      create: "/agents/create",
+      edit: "/agents/edit/:id",
+      show: "/agents/show/:id",
       meta: {
         canDelete: true,
         icon: <FaUserSecret/>,
+        hide: usageMode === "MonitorRoom"
       },
     },
     {
@@ -196,123 +198,123 @@ function App() {
       meta: {
         canDelete: true,
         icon: <FaListAlt />,
+        hide: usageMode === "MonitorRoom"
       },
     },
   
     {
       name: "ingestions",
-      list: "ingestions",
-      create: "ingestions/create",
-      edit: "ingestions/edit/:id",
-      show: "ingestions/show/:id",
+      list: "/ingestions",
+      create: "/ingestions/create",
+      edit: "/ingestions/edit/:id",
+      show: "/ingestions/show/:id",
       meta: {
         canDelete: true,
         icon: <FaDatabase />,
-        parent: "Details",
+        hide: usageMode === "MonitorRoom",
+        parent: "Details"
       },
     },
     {
       name: "issues",
-      list: "issues",
-      create: "issues/create",
-      edit: "issues/edit/:id",
-      show: "issues/show/:id",
+      list: "/issues",
+      create: "/issues/create",
+      edit: "/issues/edit/:id",
+      show: "/issues/show/:id",
       meta: {
         canDelete: true,
         icon: <FaExclamationCircle />,
-        parent: "Details",
+        hide: usageMode === "MonitorRoom",
+        parent: "Details"
       },
     },
     {
       name: "evalSetItems",
-      list: "evalSetItems",
-      create: "evalSetItems/create",
-      edit: "evalSetItems/edit/:id",
-      show: "evalSetItems/show/:id",
+      list: "/evalSetItems",
+      create: "/evalSetItems/create",
+      edit: "/evalSetItems/edit/:id",
+      show: "/evalSetItems/show/:id",
       meta: {
         canDelete: true,
         icon: <FaListAlt />,
-        parent: "Details",
+        hide: usageMode === "MonitorRoom",
+        parent: "Details"
       },
     },
     {
       name: "evalSets",
-      list: "evalSets",
-      create: "evalSets/create",
-      edit: "evalSets/edit/:id",
-      show: "evalSets/show/:id",
+      list: "/evalSets",
+      create: "/evalSets/create",
+      edit: "/evalSets/edit/:id",
+      show: "/evalSets/show/:id",
       meta: {
         canDelete: true,
         icon: <FaBrain />,
-        parent: "Details",
+        hide: usageMode === "MonitorRoom",
+        parent: "Details"
       },
     },
     {
       name: "llmBrokers",
-      list: "llmBrokers",
-      create: "llmBrokers/create",
-      edit: "llmBrokers/edit/:id",
-      show: "llmBrokers/show/:id",
+      list: "/llmBrokers",
+      create: "/llmBrokers/create",
+      edit: "/llmBrokers/edit/:id",
+      show: "/llmBrokers/show/:id",
       meta: {
         canDelete: true,
         icon: <FaRobot />,
-        parent: "Details",
+        hide: usageMode === "MonitorRoom",
+        parent: "Details"
       },
     },
     {
       name: "llms",
-      list: "llms",
-      create: "llms/create",
-      edit: "llms/edit/:id",
-      show: "llms/show/:id",
+      list: "/llms",
+      create: "/llms/create",
+      edit: "/llms/edit/:id",
+      show: "/llms/show/:id",
       meta: {
         canDelete: true,
         icon: <FaRobot />,
-        parent: "Details",
+        hide: usageMode === "MonitorRoom",
+        parent: "Details"
       },
-    }], []);
-
-  const workResources = useMemo(() => [
+    },
     {
       name: "conversations",
-      list: "conversations",
-      create: "conversations/create",
-      edit: "conversations/edit/:id",
-      show: "conversations/show/:id",
+      list: "/conversations",
+      create: "/conversations/create",
+      edit: "/conversations/edit/:id",
+      show: "/conversations/show/:id",
       meta: {
         canDelete: true,
         icon: <FaComments />,
+        hide: usageMode === "WorkRoom"
       },
     },
     {
       name: "messages",
-      list: "messages",
-      create: "messages/create",
-      edit: "messages/edit/:id",
-      show: "messages/show/:id",
+      list: "/messages",
+      create: "/messages/create",
+      edit: "/messages/edit/:id",
+      show: "/messages/show/:id",
       meta: {
         canDelete: true,
         icon: <FaEnvelope />,
+        hide: usageMode === "WorkRoom"
       },
     },
     {
       name: "cockpit",
-      list: "cockpit",
+      list: "/cockpit",
       meta: {
         canDelete: true,
         icon: <FaEnvelope />,
+        hide: usageMode === "WorkRoom"
       },
     }
-  ], []);
+  ], [usageMode]);
 
-  const resources = useMemo(() => {
-    if (usageMode === "MonitorRoom") {
-        return monitorResources;
-    } else if (usageMode === "WorkRoom") {
-        return workResources;
-    }
-    return []; 
-}, [usageMode, monitorResources, workResources]); 
 
   return (
     <BrowserRouter>
@@ -359,7 +361,7 @@ function App() {
               >
                 <Route
                   index
-                  element={<NavigateToResource resource="blog_posts" />}
+                  element={<NavigateToResource resource="gen-os-wires/" />}
                 />
                   <Route path="WorkRoom">
                     <Route index element={<WorkRoom />} />

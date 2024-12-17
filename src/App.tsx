@@ -153,7 +153,7 @@ function App() {
   };
 
 
-  console.log("usageMode", usageMode, usageMode === "MonitorRoom");
+  console.log("usageMode", usageMode, usageMode !== "MonitorRoom");
   
   
   const resources = useMemo(() => [
@@ -166,7 +166,7 @@ function App() {
       meta: {
         canDelete: true,
         icon: <FaBusinessTime />,
-        hide: usageMode === "MonitorRoom"
+        hide: usageMode !== "MonitorRoom"
       },
     },
     {
@@ -178,7 +178,7 @@ function App() {
       meta: {
         canDelete: true,
         icon: <FaCogs />,
-        hide: usageMode === "MonitorRoom"
+        hide: usageMode !== "MonitorRoom"
       },
     },
     {
@@ -190,7 +190,7 @@ function App() {
       meta: {
         canDelete: true,
         icon: <FaUserSecret/>,
-        hide: usageMode === "MonitorRoom"
+        hide: usageMode !== "MonitorRoom"
       },
     },
     {
@@ -198,7 +198,7 @@ function App() {
       meta: {
         canDelete: true,
         icon: <FaListAlt />,
-        hide: usageMode === "MonitorRoom"
+        hide: usageMode !== "MonitorRoom"
       },
     },
   
@@ -211,7 +211,7 @@ function App() {
       meta: {
         canDelete: true,
         icon: <FaDatabase />,
-        hide: usageMode === "MonitorRoom",
+        hide: usageMode !== "MonitorRoom",
         parent: "Details"
       },
     },
@@ -224,7 +224,7 @@ function App() {
       meta: {
         canDelete: true,
         icon: <FaExclamationCircle />,
-        hide: usageMode === "MonitorRoom",
+        hide: usageMode !== "MonitorRoom",
         parent: "Details"
       },
     },
@@ -237,7 +237,7 @@ function App() {
       meta: {
         canDelete: true,
         icon: <FaListAlt />,
-        hide: usageMode === "MonitorRoom",
+        hide: usageMode !== "MonitorRoom",
         parent: "Details"
       },
     },
@@ -250,7 +250,7 @@ function App() {
       meta: {
         canDelete: true,
         icon: <FaBrain />,
-        hide: usageMode === "MonitorRoom",
+        hide: usageMode !== "MonitorRoom",
         parent: "Details"
       },
     },
@@ -263,7 +263,7 @@ function App() {
       meta: {
         canDelete: true,
         icon: <FaRobot />,
-        hide: usageMode === "MonitorRoom",
+        hide: usageMode !== "MonitorRoom",
         parent: "Details"
       },
     },
@@ -276,7 +276,7 @@ function App() {
       meta: {
         canDelete: true,
         icon: <FaRobot />,
-        hide: usageMode === "MonitorRoom",
+        hide: usageMode !== "MonitorRoom",
         parent: "Details"
       },
     },
@@ -289,7 +289,7 @@ function App() {
       meta: {
         canDelete: true,
         icon: <FaComments />,
-        hide: usageMode === "WorkRoom"
+        hide: usageMode !== "WorkRoom"
       },
     },
     {
@@ -301,7 +301,7 @@ function App() {
       meta: {
         canDelete: true,
         icon: <FaEnvelope />,
-        hide: usageMode === "WorkRoom"
+        hide: usageMode !== "WorkRoom"
       },
     },
     {
@@ -310,7 +310,7 @@ function App() {
       meta: {
         canDelete: true,
         icon: <FaEnvelope />,
-        hide: usageMode === "WorkRoom"
+        hide: usageMode !== "WorkRoom"
       },
     }
   ], [usageMode]);
@@ -319,13 +319,18 @@ function App() {
   ? '/gen-os-wires' 
   : '/';
 
+  const dataProviderPath = window.location.pathname.startsWith('/gen-os-wires') 
+  ? "https://my-json-server.typicode.com/nunobbras/gen-os-wires"
+  : '//localhost:3000';
+    
+
   return (
     <BrowserRouter basename = {basename}>
       <RefineKbarProvider >
         {/* You can change the theme colors here. example: theme={RefineThemes.Magenta} */}
         <ChakraProvider>
           <Refine
-            dataProvider={dataProvider("https://my-json-server.typicode.com/nunobbras/gen-os-wires")}
+            dataProvider={dataProvider(dataProviderPath)}
             notificationProvider={useNotificationProvider}
             routerProvider={routerBindings}
             authProvider={authProvider}

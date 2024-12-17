@@ -59,7 +59,7 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps & { toggleMode: ()
 
 
 const localToggleMode = () => {
-      if (usageMode !== "WorkRoom") {
+      if (usageMode === "WorkRoom") {
         navigate("/businessSolutions");
       } else {
         navigate("/conversations");
